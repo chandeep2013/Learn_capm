@@ -9,6 +9,7 @@
     "@cap-js/hana": "^1",
     "@sap/cds": "^8",
     "@sap/cds-common-content": "^2.1.0",
+    "@sap/cds-runtime": "^3.3.0",
     "@sap/xssec": "^4",
     "express": "^4"
   },
@@ -18,15 +19,28 @@
     "@sap/cds-dk": "^8"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-interaction_items": "cds watch --open interaction_items/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "cds": {
     "requires": {
       "auth": "mocked",
-      "db":"hana"
+      "db": {
+        "kind": "hana",
+        "requestTimeout":120000,
+        "pool": {
+          "acquireTimeoutMillis": 120000,
+          "min": 0,
+          "max": 1400,
+          "fifo": true
+        }
+      }
     },
     "sql": {
       "native_hana_associations": false
     }
-  }
+  },
+  "sapux": [
+    "app/interaction_items"
+  ]
 }

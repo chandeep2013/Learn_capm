@@ -49,6 +49,7 @@ modules:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
+          timeout: 120000
       - name: MyHANAApp-auth
     provides:
       - name: app-api
